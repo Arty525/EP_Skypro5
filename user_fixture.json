@@ -1,0 +1,197 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "email": "ivanov@example.com",
+      "first_name": "Иван",
+      "last_name": "Иванов",
+      "phone_number": "+79161234567",
+      "city": "Москва",
+      "avatar": "avatars/ivanov.jpg",
+      "password": "pbkdf2_sha256$260000$HASH..."
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "email": "petrova@example.com",
+      "first_name": "Елена",
+      "last_name": "Петрова",
+      "phone_number": "+79261234568",
+      "city": "Санкт-Петербург",
+      "avatar": "avatars/petrova.jpg",
+      "password": "pbkdf2_sha256$260000$HASH..."
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "email": "sidorov@example.com",
+      "first_name": "Алексей",
+      "last_name": "Сидоров",
+      "phone_number": "+79361234569",
+      "city": "Новосибирск",
+      "avatar": "avatars/sidorov.jpg",
+      "password": "pbkdf2_sha256$260000$HASH..."
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 4,
+    "fields": {
+      "email": "smirnova@example.com",
+      "first_name": "Ольга",
+      "last_name": "Смирнова",
+      "phone_number": "+79461234570",
+      "city": "Екатеринбург",
+      "avatar": "avatars/smirnova.jpg",
+      "password": "pbkdf2_sha256$260000$HASH..."
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 5,
+    "fields": {
+      "email": "kuznetsov@example.com",
+      "first_name": "Дмитрий",
+      "last_name": "Кузнецов",
+      "phone_number": "+79561234571",
+      "city": "Казань",
+      "avatar": "avatars/kuznetsov.jpg",
+      "password": "pbkdf2_sha256$260000$HASH..."
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 6,
+    "fields": {
+      "email": "popova@example.com",
+      "first_name": "Анна",
+      "last_name": "Попова",
+      "phone_number": "+79661234572",
+      "city": "Нижний Новгород",
+      "avatar": "avatars/popova.jpg",
+      "password": "pbkdf2_sha256$260000$HASH..."
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 7,
+    "fields": {
+      "email": "lebedeva@example.com",
+      "first_name": "Мария",
+      "last_name": "Лебедева",
+      "phone_number": "+79761234573",
+      "city": "Самара",
+      "avatar": "avatars/lebedeva.jpg",
+      "password": "pbkdf2_sha256$260000$HASH..."
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 8,
+    "fields": {
+      "email": "kozlov@example.com",
+      "first_name": "Сергей",
+      "last_name": "Козлов",
+      "phone_number": "+79861234574",
+      "city": "Омск",
+      "avatar": "avatars/kozlov.jpg",
+      "password": "pbkdf2_sha256$260000$HASH..."
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 9,
+    "fields": {
+      "email": "novikova@example.com",
+      "first_name": "Екатерина",
+      "last_name": "Новикова",
+      "phone_number": "+79961234575",
+      "city": "Ростов-на-Дону",
+      "avatar": "avatars/novikova.jpg",
+      "password": "pbkdf2_sha256$260000$HASH..."
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 10,
+    "fields": {
+      "email": "morozov@example.com",
+      "first_name": "Андрей",
+      "last_name": "Морозов",
+      "phone_number": "+79011234576",
+      "city": "Уфа",
+      "avatar": "avatars/morozov.jpg",
+      "password": "pbkdf2_sha256$260000$HASH..."
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 11,
+    "fields": {
+      "email": "pavlova@example.com",
+      "first_name": "Виктория",
+      "last_name": "Павлова",
+      "phone_number": "+79021234577",
+      "city": "Красноярск",
+      "avatar": "avatars/pavlova.jpg",
+      "password": "pbkdf2_sha256$260000$HASH..."
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 12,
+    "fields": {
+      "email": "sokolov@example.com",
+      "first_name": "Артем",
+      "last_name": "Соколов",
+      "phone_number": "+79031234578",
+      "city": "Пермь",
+      "avatar": "avatars/sokolov.jpg",
+      "password": "pbkdf2_sha256$260000$HASH..."
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 13,
+    "fields": {
+      "email": "fedorova@example.com",
+      "first_name": "Наталья",
+      "last_name": "Федорова",
+      "phone_number": "+79041234579",
+      "city": "Воронеж",
+      "avatar": "avatars/fedorova.jpg",
+      "password": "pbkdf2_sha256$260000$HASH..."
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 14,
+    "fields": {
+      "email": "volkov@example.com",
+      "first_name": "Максим",
+      "last_name": "Волков",
+      "phone_number": "+79051234580",
+      "city": "Волгоград",
+      "avatar": "avatars/volkov.jpg",
+      "password": "pbkdf2_sha256$260000$HASH..."
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 15,
+    "fields": {
+      "email": "alexeeva@example.com",
+      "first_name": "Юлия",
+      "last_name": "Алексеева",
+      "phone_number": "+79061234581",
+      "city": "Краснодар",
+      "avatar": "avatars/alexeeva.jpg",
+      "password": "pbkdf2_sha256$260000$HASH..."
+    }
+  }
+]

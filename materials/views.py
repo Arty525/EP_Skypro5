@@ -1,13 +1,22 @@
+from rest_framework.response import Response
 from .models import Course, Lesson
 from .serializers import CourseSerializer, LessonSerializer
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, request, status
+
 
 # Create your views here.
 
 
 class CourseViewSet(viewsets.ModelViewSet):
-    queryset = Course.objects.all()
     serializer_class = CourseSerializer
+    queryset = Course.objects.all()
+    # def get(self, request):
+    #     queryset = Course.objects.all()
+    #     serializer = CourseSerializer(data=request.data)
+    #     if serializer.is_valid():
+    #         course = serializer.save()
+    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class LessonList(generics.ListCreateAPIView):
