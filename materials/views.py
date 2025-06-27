@@ -10,13 +10,6 @@ from rest_framework import viewsets, generics, request, status
 class CourseViewSet(viewsets.ModelViewSet):
     serializer_class = CourseSerializer
     queryset = Course.objects.all()
-    # def get(self, request):
-    #     queryset = Course.objects.all()
-    #     serializer = CourseSerializer(data=request.data)
-    #     if serializer.is_valid():
-    #         course = serializer.save()
-    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class LessonList(generics.ListCreateAPIView):
