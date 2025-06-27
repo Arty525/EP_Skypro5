@@ -9,5 +9,6 @@ app_name = "users"
 router = DefaultRouter()
 router.register(r"users", UserViewSet, basename="user")
 urlpatterns = [
-    path("api/", include(router.urls)),
+    path("api/user/", include(router.urls)),
+    path("api/payment/", include(router.urls)),
 ] + router.urls
