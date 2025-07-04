@@ -1,0 +1,182 @@
+[
+  {
+    "model": "users.payments",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "payment_date": "2023-01-15",
+      "course": 1,
+      "lesson": null,
+      "amount": 15000,
+      "payment_method": "перевод на счет"
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "payment_date": "2023-01-16",
+      "course": null,
+      "lesson": 1,
+      "amount": 2500,
+      "payment_method": "наличные"
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "payment_date": "2023-01-17",
+      "course": 2,
+      "lesson": null,
+      "amount": 18000,
+      "payment_method": "перевод на счет"
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 4,
+    "fields": {
+      "user": 4,
+      "payment_date": "2023-01-18",
+      "course": null,
+      "lesson": 6,
+      "amount": 3000,
+      "payment_method": "наличные"
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 5,
+    "fields": {
+      "user": 5,
+      "payment_date": "2023-01-19",
+      "course": 3,
+      "lesson": null,
+      "amount": 12000,
+      "payment_method": "перевод на счет"
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 6,
+    "fields": {
+      "user": 6,
+      "payment_date": "2023-01-20",
+      "course": null,
+      "lesson": 10,
+      "amount": 2000,
+      "payment_method": "наличные"
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 7,
+    "fields": {
+      "user": 7,
+      "payment_date": "2023-01-21",
+      "course": 4,
+      "lesson": null,
+      "amount": 20000,
+      "payment_method": "перевод на счет"
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 8,
+    "fields": {
+      "user": 8,
+      "payment_date": "2023-01-22",
+      "course": null,
+      "lesson": 13,
+      "amount": 3500,
+      "payment_method": "наличные"
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 9,
+    "fields": {
+      "user": 9,
+      "payment_date": "2023-01-23",
+      "course": 5,
+      "lesson": null,
+      "amount": 15000,
+      "payment_method": "перевод на счет"
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 10,
+    "fields": {
+      "user": 10,
+      "payment_date": "2023-01-24",
+      "course": null,
+      "lesson": 3,
+      "amount": 1800,
+      "payment_method": "наличные"
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 11,
+    "fields": {
+      "user": 11,
+      "payment_date": "2023-01-25",
+      "course": 6,
+      "lesson": null,
+      "amount": 17000,
+      "payment_method": "перевод на счет"
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 12,
+    "fields": {
+      "user": 12,
+      "payment_date": "2023-01-26",
+      "course": null,
+      "lesson": 7,
+      "amount": 2200,
+      "payment_method": "наличные"
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 13,
+    "fields": {
+      "user": 13,
+      "payment_date": "2023-01-27",
+      "course": 7,
+      "lesson": null,
+      "amount": 22000,
+      "payment_method": "перевод на счет"
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 14,
+    "fields": {
+      "user": 14,
+      "payment_date": "2023-01-28",
+      "course": null,
+      "lesson": 15,
+      "amount": 4000,
+      "payment_method": "наличные"
+    }
+  },
+  {
+    "model": "users.payments",
+    "pk": 15,
+    "fields": {
+      "user": 15,
+      "payment_date": "2023-01-29",
+      "course": 8,
+      "lesson": null,
+      "amount": 25000,
+      "payment_method": "перевод на счет"
+    }
+  }
+]

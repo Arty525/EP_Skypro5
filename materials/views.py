@@ -1,13 +1,15 @@
+from rest_framework.response import Response
 from .models import Course, Lesson
 from .serializers import CourseSerializer, LessonSerializer
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, request, status
+
 
 # Create your views here.
 
 
 class CourseViewSet(viewsets.ModelViewSet):
-    queryset = Course.objects.all()
     serializer_class = CourseSerializer
+    queryset = Course.objects.all()
 
 
 class LessonList(generics.ListCreateAPIView):

@@ -44,7 +44,14 @@ INSTALLED_APPS = [
     "rest_framework",
     "materials",
     "users",
+    'django_filters',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+}
 
 AUTH_USER_MODEL = "users.User"
 
