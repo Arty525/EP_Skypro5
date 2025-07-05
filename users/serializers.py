@@ -16,6 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class FullUserSerializer(serializers.ModelSerializer):
     payment_history = serializers.SerializerMethodField()
+    groups = serializers.StringRelatedField(many=True)
 
     def get_payment_history(self, instance):
         payment_history = instance.payments_set.all()
@@ -23,12 +24,14 @@ class FullUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["id", "email", "first_name", "last_name", "city", "phone_number", "avatar", "payment_history"]
+        fields = ["id", "email", "groups", "first_name", "last_name", "city", "phone_number", "avatar", "payment_history"]
 
 class PrivateUserSerializer(serializers.ModelSerializer):
+    groups = serializers.StringRelatedField(many=True)
+
     class Meta:
         model = User
-        fields = ["id", "email", "first_name", "city"]
+        fields = ["id", "email", "groups", "first_name", "city"]
 
 
 class PaymentSerializer(serializers.ModelSerializer):
