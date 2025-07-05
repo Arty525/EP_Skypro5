@@ -35,10 +35,10 @@ class CustomUserManager(BaseUserManager):
 class User(AbstractUser):
     username = None
     email = models.EmailField(unique=True, verbose_name="E-mail")
-    first_name = models.CharField(max_length=50, verbose_name="Имя")
-    last_name = models.CharField(max_length=50, verbose_name="Фамилия")
-    phone_number = models.CharField(max_length=50, verbose_name="Номер телефона")
-    city = models.CharField(max_length=50, verbose_name="Город")
+    first_name = models.CharField(max_length=50, verbose_name="Имя", null=True, blank=True)
+    last_name = models.CharField(max_length=50, verbose_name="Фамилия", null=True, blank=True)
+    phone_number = models.CharField(max_length=50, verbose_name="Номер телефона", null=True, blank=True)
+    city = models.CharField(max_length=50, verbose_name="Город", null=True, blank=True)
     avatar = models.ImageField(
         upload_to="avatars/", verbose_name="Аватар", null=True, blank=True
     )

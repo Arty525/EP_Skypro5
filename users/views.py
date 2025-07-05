@@ -1,3 +1,4 @@
+from django.db.migrations import serializer
 from django_filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import permission_classes
@@ -6,31 +7,44 @@ from rest_framework.response import Response
 
 from .models import Payments, User
 from .permissions import IsCurrentUser
-from .serializers import UserSerializer, PaymentSerializer
+from .serializers import FullUserSerializer, PrivateUserSerializer, PaymentSerializer, UserSerializer
 from rest_framework import viewsets, generics
-# Create your views here.
 
-class UserViewSet(viewsets.ModelViewSet):
+class UserListAPIView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = PrivateUserSerializer
+    permission_classes = [IsAuthenticated]
+
+class UserRetrieveAPIView(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    permission_classes = [IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.request.user == self.get_object():
+            return FullUserSerializer
+        return PrivateUserSerializer
+
+
+class UserDestroyAPIView(generics.DestroyAPIView):
+    queryset = User.objects.all()
+    permission_classes = [IsAuthenticated, IsCurrentUser]
+
+
+class UserUpdateAPIView(generics.UpdateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (IsAuthenticated,)
+    permission_classes = [IsAuthenticated, IsCurrentUser]
 
-    def list(self, request):
-        queryset = User.objects.values('id', 'email', 'first_name', 'phone_number', 'city')
-        return Response(queryset)
 
-    def retrieve(self, request, pk=None):
-        if self.request.user == User.objects.get(pk=pk):
-            queryset = User.objects.values().get(pk=pk)
-            return Response(queryset)
-        else:
-            queryset = User.objects.values('id', 'email', 'first_name', 'phone_number', 'city').get(pk=pk)
-            return Response(queryset)
+class CreateUserAPIView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
-    def get_permissions(self):
-        if self.action in ['update', 'partial_update']:
-            self.permission_classes = (IsCurrentUser,)
-        return super().get_permissions()
+    def perform_create(self, serializer):
+        user = serializer.save(is_active=True)
+        user.set_password(user.password)
+        user.save()
+
 
 class PaymentListAPIView(generics.ListAPIView):
     queryset = Payments.objects.all()
