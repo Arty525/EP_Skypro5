@@ -1,19 +1,22 @@
-from django.db.migrations import serializer
 from django_filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
-
 from .models import Payments, User
 from .permissions import IsCurrentUser
-from .serializers import FullUserSerializer, PrivateUserSerializer, PaymentSerializer, UserSerializer
-from rest_framework import viewsets, generics
+from .serializers import (
+    FullUserSerializer,
+    PrivateUserSerializer,
+    PaymentSerializer,
+    UserSerializer,
+)
+from rest_framework import generics
+
 
 class UserListAPIView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = PrivateUserSerializer
     permission_classes = [IsAuthenticated]
+
 
 class UserRetrieveAPIView(generics.RetrieveAPIView):
     queryset = User.objects.all()
@@ -50,5 +53,5 @@ class PaymentListAPIView(generics.ListAPIView):
     queryset = Payments.objects.all()
     serializer_class = PaymentSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
-    filterset_fields = ['course', 'lesson', 'payment_method']
-    ordering_fields = ['payment_date']
+    filterset_fields = ["course", "lesson", "payment_method"]
+    ordering_fields = ["payment_date"]

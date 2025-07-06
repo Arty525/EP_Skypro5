@@ -1,6 +1,4 @@
-from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework.views import APIView
-
+from rest_framework.permissions import IsAuthenticated
 from .models import Course, Lesson
 from .permissions import IsModerator, IsOwner, IsNotModerator
 from .serializers import CourseSerializer, LessonSerializer
@@ -17,11 +15,11 @@ class CourseViewSet(viewsets.ModelViewSet):
         serializer.save(owner=self.request.user)
 
     def get_permissions(self):
-        if self.action == 'create':
+        if self.action == "create":
             self.permission_classes = (~IsModerator,)
-        elif self.action in ['update', 'partial_update', 'retrieve']:
+        elif self.action in ["update", "partial_update", "retrieve"]:
             self.permission_classes = (IsModerator | IsOwner,)
-        elif self.action == 'destroy':
+        elif self.action == "destroy":
             self.permission_classes = (~IsModerator | IsOwner,)
         return super().get_permissions()
 

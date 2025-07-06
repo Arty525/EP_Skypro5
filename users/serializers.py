@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import User, Payments
-from .permissions import IsCurrentUser
+
 
 class UserSerializer(serializers.ModelSerializer):
     payment_history = serializers.SerializerMethodField()
@@ -24,7 +24,18 @@ class FullUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["id", "email", "groups", "first_name", "last_name", "city", "phone_number", "avatar", "payment_history"]
+        fields = [
+            "id",
+            "email",
+            "groups",
+            "first_name",
+            "last_name",
+            "city",
+            "phone_number",
+            "avatar",
+            "payment_history",
+        ]
+
 
 class PrivateUserSerializer(serializers.ModelSerializer):
     groups = serializers.StringRelatedField(many=True)
