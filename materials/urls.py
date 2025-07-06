@@ -14,7 +14,7 @@ from rest_framework.routers import DefaultRouter
 app_name = "materials"
 
 router = DefaultRouter()
-router.register(r"course", CourseViewSet, basename="course")
+router.register(r"courses", CourseViewSet, basename="courses")
 
 urlpatterns = [
     path("lessons/", LessonListAPIView.as_view(), name="lesson_list"),
