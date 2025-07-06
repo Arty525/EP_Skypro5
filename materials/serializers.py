@@ -5,14 +5,19 @@ from materials.models import Course, Lesson
 class CourseSerializer(serializers.ModelSerializer):
 
     lessons_count = serializers.SerializerMethodField()
-    lessons = serializers.SerializerMethodField()
+
+    class LessonShortSerializer(serializers.ModelSerializer):
+        """Сериализатор для краткого отображения уроков внутри курса."""
+
+        class Meta:
+            model = Lesson
+            fields = ("id", "title")
+
+    lessons = LessonShortSerializer(many=True, read_only=True, source="lesson_set")
 
     def get_lessons_count(self, instance):
         return instance.lesson_set.count()
 
-    def get_lessons(self, instance):
-        lessons = instance.lesson_set.all()
-        return LessonSerializer(lessons, many=True).data
 
     class Meta:
         model = Course
