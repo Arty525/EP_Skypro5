@@ -1,5 +1,6 @@
 from django.db import models
 
+from materials.validators import VideoUrlValidator
 from users.models import User
 
 
