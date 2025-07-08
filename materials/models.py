@@ -19,7 +19,7 @@ class Course(models.Model):
     class Meta:
         verbose_name = "Курс"
         verbose_name_plural = "Курсы"
-        ordering = ["title"]
+        ordering = ["id"]
 
 
 class Lesson(models.Model):
@@ -38,7 +38,7 @@ class Lesson(models.Model):
     class Meta:
         verbose_name = "Урок"
         verbose_name_plural = "Уроки"
-        ordering = ["title", "course"]
+        ordering = ["id"]
 
 
 class Subscriptions(models.Model):
@@ -51,4 +51,4 @@ class Subscriptions(models.Model):
     class Meta:
         verbose_name = 'Подписка'
         verbose_name_plural = 'Подписки'
-        ordering = ["course", "user"]
+        ordering = ["id"]
