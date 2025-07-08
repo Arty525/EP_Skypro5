@@ -3,9 +3,6 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-# Create your models here.
-
-
 class CustomUserManager(BaseUserManager):
     # Для устранения ошибки при создании пользователя без username
     def _create_user(self, email, password, **extra_fields):

@@ -1,8 +1,11 @@
 from rest_framework.permissions import IsAuthenticated
-from .models import Course, Lesson
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from .models import Course, Lesson, Subscriptions
 from .permissions import IsModerator, IsOwner, IsNotModerator
 from .serializers import CourseSerializer, LessonSerializer
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, status
 
 
 # Create your views here.
@@ -22,6 +25,21 @@ class CourseViewSet(viewsets.ModelViewSet):
         elif self.action == "destroy":
             self.permission_classes = (~IsModerator | IsOwner,)
         return super().get_permissions()
+
+
+class CourseSubscribeAPIView(APIView):
+    def post(self, request, pk):
+        user = request.user
+        course_item = Course.objects.get(pk=pk)
+        try:
+            subs_item = Subscriptions.objects.get(user=user, course=course_item)
+        except Subscriptions.DoesNotExist:
+            sub = Subscriptions.objects.create(user=user, course=course_item)
+            sub.save()
+            return Response({'message': 'подписка подключена'}, status=status.HTTP_201_CREATED)
+        else:
+            subs_item.delete()
+            return Response({'message' : 'подписка отключена'}, status=status.HTTP_201_CREATED)
 
 
 class LessonListAPIView(generics.ListAPIView):
