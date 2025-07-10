@@ -3,9 +3,6 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-# Create your models here.
-
-
 class CustomUserManager(BaseUserManager):
     # Для устранения ошибки при создании пользователя без username
     def _create_user(self, email, password, **extra_fields):
@@ -59,6 +56,11 @@ class User(AbstractUser):
     def __str__(self):
         return f"{self.username} - {self.email}"
 
+    class Meta:
+        verbose_name = "Пользователь"
+        verbose_name_plural = "Пользователи"
+        ordering = ["id"]
+
 
 class Payments(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -71,3 +73,12 @@ class Payments(models.Model):
     )
     amount = models.IntegerField(default=0)
     payment_method = models.CharField()
+
+    def __str__(self):
+        return (f"{self.user} - {self.payment_date} - "
+                f"{self.course} - {self.amount} - {self.payment_method} - {self.lesson}")
+
+    class Meta:
+        verbose_name = "Платеж"
+        verbose_name_plural = "Платежи"
+        ordering = ["payment_date"]
