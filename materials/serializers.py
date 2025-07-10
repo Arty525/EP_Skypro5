@@ -5,7 +5,6 @@ from materials.validators import VideoUrlValidator
 
 
 class CourseSerializer(serializers.ModelSerializer):
-
     lessons_count = serializers.SerializerMethodField()
     lessons = serializers.SerializerMethodField()
     subscription = serializers.SerializerMethodField()
