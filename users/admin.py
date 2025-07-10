@@ -34,7 +34,7 @@ class PaymentsAdmin(admin.ModelAdmin):
         "amount",
         "payment_method",
         "course",
-        "lesson"
+        "lesson",
     )
     list_filter = (
         "user",
@@ -42,6 +42,6 @@ class PaymentsAdmin(admin.ModelAdmin):
         "amount",
         "payment_method",
         "course",
-        "lesson"
+        "lesson",
     )
     search_fields = ("course", "user")

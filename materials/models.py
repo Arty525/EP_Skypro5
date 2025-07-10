@@ -46,9 +46,9 @@ class Subscriptions(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'Курс: {str(self.course)} | Пользователь: {self.user}'
+        return f"Курс: {str(self.course)} | Пользователь: {self.user}"
 
     class Meta:
-        verbose_name = 'Подписка'
-        verbose_name_plural = 'Подписки'
+        verbose_name = "Подписка"
+        verbose_name_plural = "Подписки"
         ordering = ["id"]

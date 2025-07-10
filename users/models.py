@@ -56,11 +56,10 @@ class User(AbstractUser):
     def __str__(self):
         return f"{self.username} - {self.email}"
 
-
     class Meta:
-        verbose_name = 'Пользователь'
-        verbose_name_plural = 'Пользователи'
-        ordering = ['id']
+        verbose_name = "Пользователь"
+        verbose_name_plural = "Пользователи"
+        ordering = ["id"]
 
 
 class Payments(models.Model):
@@ -76,9 +75,10 @@ class Payments(models.Model):
     payment_method = models.CharField()
 
     def __str__(self):
-        return f"{self.user} - {self.payment_date} - {self.course} - {self.amount} - {self.payment_method} - {self.lesson}"
+        return (f"{self.user} - {self.payment_date} - "
+                f"{self.course} - {self.amount} - {self.payment_method} - {self.lesson}")
 
     class Meta:
-        verbose_name = 'Платеж'
-        verbose_name_plural = 'Платежи'
-        ordering = ['payment_date']
+        verbose_name = "Платеж"
+        verbose_name_plural = "Платежи"
+        ordering = ["payment_date"]

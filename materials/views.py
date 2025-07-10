@@ -30,6 +30,8 @@ class CourseViewSet(viewsets.ModelViewSet):
 
 
 class CourseSubscribeAPIView(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def post(self, request, pk):
         user = request.user
         course_item = Course.objects.get(pk=pk)
@@ -38,10 +40,14 @@ class CourseSubscribeAPIView(APIView):
         except Subscriptions.DoesNotExist:
             sub = Subscriptions.objects.create(user=user, course=course_item)
             sub.save()
-            return Response({'message': 'подписка подключена'}, status=status.HTTP_201_CREATED)
+            return Response(
+                {"message": "подписка подключена"}, status=status.HTTP_201_CREATED
+            )
         else:
             subs_item.delete()
-            return Response({'message' : 'подписка отключена'}, status=status.HTTP_201_CREATED)
+            return Response(
+                {"message": "подписка отключена"}, status=status.HTTP_201_CREATED
+            )
 
 
 class LessonListAPIView(generics.ListAPIView):

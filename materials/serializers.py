@@ -13,7 +13,7 @@ class CourseSerializer(serializers.ModelSerializer):
     def get_subscription(self, instance):
         try:
             sub = Subscriptions.objects.get(course=instance)
-            return sub.user == self.context['request'].user
+            return sub.user == self.context["request"].user
         except ObjectDoesNotExist:
             return False
 
@@ -33,4 +33,4 @@ class LessonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lesson
         fields = "__all__"
-        validators = [VideoUrlValidator(field='video_url')]
+        validators = [VideoUrlValidator(field="video_url")]
