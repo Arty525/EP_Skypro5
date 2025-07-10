@@ -1,12 +1,8 @@
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
-from rest_framework.views import APIView
-
-from .models import Course, Lesson, Subscriptions
-from .paginators import CustomPagination
+from .models import Course, Lesson
 from .permissions import IsModerator, IsOwner, IsNotModerator
 from .serializers import CourseSerializer, LessonSerializer
-from rest_framework import viewsets, generics, status
+from rest_framework import viewsets, generics
 
 
 # Create your views here.
@@ -14,7 +10,6 @@ class CourseViewSet(viewsets.ModelViewSet):
     serializer_class = CourseSerializer
     queryset = Course.objects.all()
     permission_classes = (IsAuthenticated,)
-    pagination_class = CustomPagination
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -29,29 +24,7 @@ class CourseViewSet(viewsets.ModelViewSet):
         return super().get_permissions()
 
 
-class CourseSubscribeAPIView(APIView):
-    permission_classes = (IsAuthenticated,)
-
-    def post(self, request, pk):
-        user = request.user
-        course_item = Course.objects.get(pk=pk)
-        try:
-            subs_item = Subscriptions.objects.get(user=user, course=course_item)
-        except Subscriptions.DoesNotExist:
-            sub = Subscriptions.objects.create(user=user, course=course_item)
-            sub.save()
-            return Response(
-                {"message": "подписка подключена"}, status=status.HTTP_201_CREATED
-            )
-        else:
-            subs_item.delete()
-            return Response(
-                {"message": "подписка отключена"}, status=status.HTTP_201_CREATED
-            )
-
-
 class LessonListAPIView(generics.ListAPIView):
-    pagination_class = CustomPagination
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     permission_classes = (IsAuthenticated, IsOwner)
