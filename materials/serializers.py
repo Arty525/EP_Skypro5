@@ -3,7 +3,6 @@ from materials.models import Course, Lesson
 
 
 class CourseSerializer(serializers.ModelSerializer):
-
     lessons_count = serializers.SerializerMethodField()
 
     class LessonShortSerializer(serializers.ModelSerializer):
