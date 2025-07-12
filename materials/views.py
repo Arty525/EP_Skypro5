@@ -1,15 +1,16 @@
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
+from users.models import Payments
+from users.serializers import PaymentSerializer
 from .models import Course, Lesson, Subscriptions
 from .paginators import CustomPagination
 from .permissions import IsModerator, IsOwner, IsNotModerator
 from .serializers import CourseSerializer, LessonSerializer
 from rest_framework import viewsets, generics, status
+from .services import create_stripe_price, create_stripe_session
 
 
-# Create your views here.
 class CourseViewSet(viewsets.ModelViewSet):
     serializer_class = CourseSerializer
     queryset = Course.objects.all()
@@ -82,3 +83,23 @@ class LessonDestroyAPIView(generics.DestroyAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     permission_classes = (IsAuthenticated, IsNotModerator, IsOwner)
+
+
+class PaymentCreateAPIView(generics.CreateAPIView):
+    queryset = Payments.objects.all()
+    serializer_class = PaymentSerializer
+
+    def get_course(self):
+        course_id = self.kwargs.get("pk")
+        return Course.objects.get(pk=course_id)
+
+    def perform_create(self, serializer, *args, **kwargs):
+        course_item = self.get_course()
+        payment = serializer.save(user=self.request.user, course=course_item)
+        price = create_stripe_price(course_item)
+        session_id, payment_link = create_stripe_session(price)
+        payment.session_id = session_id
+        payment.payment_link = payment_link
+        payment.payment_method = "перевод на счет"
+        payment.save()
+        return Response({"payment_link", payment_link}, status=status.HTTP_201_CREATED)

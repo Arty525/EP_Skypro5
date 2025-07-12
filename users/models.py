@@ -63,7 +63,7 @@ class User(AbstractUser):
 
 
 class Payments(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     payment_date = models.DateField(auto_now_add=True)
     course = models.ForeignKey(
         "materials.Course", on_delete=models.CASCADE, null=True, blank=True
@@ -72,11 +72,16 @@ class Payments(models.Model):
         "materials.Lesson", on_delete=models.CASCADE, null=True, blank=True
     )
     amount = models.IntegerField(default=0)
-    payment_method = models.CharField()
+    payment_method = models.CharField(blank=True, null=True)
+    payment_link = models.URLField(null=True, blank=True, max_length=500)
+    session_id = models.CharField(blank=True, null=True, max_length=255)
+    status = models.CharField(blank=True, null=True)
 
     def __str__(self):
-        return (f"{self.user} - {self.payment_date} - "
-                f"{self.course} - {self.amount} - {self.payment_method} - {self.lesson}")
+        return (
+            f"{self.user} - {self.payment_date} - "
+            f"{self.course} - {self.amount} - {self.payment_method} - {self.lesson}"
+        )
 
     class Meta:
         verbose_name = "Платеж"
