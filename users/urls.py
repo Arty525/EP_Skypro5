@@ -12,8 +12,8 @@ from .views import (
 app_name = "users"
 urlpatterns = [
     path("list/", UserListAPIView.as_view(), name="user_list"),
-    path("user/<int:pk>", UserRetrieveAPIView.as_view(), name="user_retrieve"),
-    path("delete/<int:pk>", UserDestroyAPIView.as_view(), name="delete_user"),
+    path("user/<int:pk>/", UserRetrieveAPIView.as_view(), name="user_retrieve"),
+    path("delete/<int:pk>/", UserDestroyAPIView.as_view(), name="delete_user"),
     path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("registration/", CreateUserAPIView.as_view(), name="registration"),

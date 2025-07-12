@@ -27,6 +27,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-wu97_k2%np!t5_x%5v1l!+zp$eg&fg9@9i7wdk%9o@zhm1(t7("
 
+STRIPE_API_KEY = os.getenv("STRIPE_API_KEY")
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -47,6 +49,7 @@ INSTALLED_APPS = [
     "materials",
     "users",
     'django_filters',
+    'drf_yasg',
 ]
 
 REST_FRAMEWORK = {

@@ -1,4 +1,6 @@
 from rest_framework import serializers
+
+from materials.services import session_checkout
 from .models import User, Payments
 
 
@@ -20,6 +22,10 @@ class FullUserSerializer(serializers.ModelSerializer):
 
     def get_payment_history(self, instance):
         payment_history = instance.payments_set.all()
+        for payment in payment_history:
+            if payment.session_id is not None:
+                payment.status = session_checkout(payment.session_id)
+                payment.save()
         return PaymentSerializer(payment_history, many=True).data
 
     class Meta:
