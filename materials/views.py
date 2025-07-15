@@ -9,6 +9,23 @@ from .permissions import IsModerator, IsOwner, IsNotModerator
 from .serializers import CourseSerializer, LessonSerializer
 from rest_framework import viewsets, generics, status
 from .services import create_stripe_price, create_stripe_session
+from .tasks import send_course_update_mail
+import logging
+import os
+from pathlib import Path
+
+
+ROOT_DIR = Path(__file__).resolve().parent.parent
+
+views_logger = logging.getLogger(__name__)
+console_handler = logging.StreamHandler()
+console_formatter = logging.Formatter("[%(asctime)s] %(levelname)s - %(name)s - %(message)s - %(pathname)s:%(lineno)d")
+console_handler.setFormatter(console_formatter)
+file_handler = logging.FileHandler(os.path.join(ROOT_DIR,"logs", "materials","views.log"), "w")
+file_formatter = logging.Formatter("[%(asctime)s] %(levelname)s - %(name)s - %(message)s - %(pathname)s:%(lineno)d")
+file_handler.setFormatter(file_formatter)
+views_logger.addHandler(file_handler)
+views_logger.setLevel(logging.INFO)
 
 
 class CourseViewSet(viewsets.ModelViewSet):
@@ -16,6 +33,18 @@ class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     permission_classes = (IsAuthenticated,)
     pagination_class = CustomPagination
+
+    def update(self, request, *args, **kwargs):
+        views_logger.info(f'{__name__} started')
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            course = Course.objects.get(pk=kwargs['pk'])
+            send_course_update_mail.delay(course.pk,)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)

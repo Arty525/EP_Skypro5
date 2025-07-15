@@ -51,3 +51,12 @@ python manage.py <название_команды>
     add_lessons - добавить тестовые уроки
     add_payments - добавить тестовые платежные операции
     add_users_into_group - добавить пользователей в группы
+
+## Запуск обработчика отложенных задач
+Для запуска обработчика на Windows введите команду:
+
+      celery -A config worker -l INFO -P eventlet
+
+Для Linux:
+
+      celery -A config worker -l INFO
