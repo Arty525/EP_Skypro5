@@ -1,7 +1,12 @@
+from datetime import timezone
+
 from rest_framework import serializers
 
 from materials.services import session_checkout
 from .models import User, Payments
+
+
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -40,6 +45,7 @@ class FullUserSerializer(serializers.ModelSerializer):
             "phone_number",
             "avatar",
             "payment_history",
+            "last_login",
         ]
 
 

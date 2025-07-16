@@ -14,6 +14,7 @@ class UserAdmin(admin.ModelAdmin):
         "last_name",
         "phone_number",
         "city",
+        "last_login",
     )
     list_filter = (
         "email",
@@ -21,6 +22,7 @@ class UserAdmin(admin.ModelAdmin):
         "last_name",
         "phone_number",
         "city",
+        "last_login",
     )
     search_fields = ("username", "email")
 

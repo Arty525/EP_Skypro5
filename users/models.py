@@ -1,3 +1,5 @@
+from datetime import timezone
+
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.db import models
@@ -47,6 +49,7 @@ class User(AbstractUser):
     avatar = models.ImageField(
         upload_to="avatars/", verbose_name="Аватар", null=True, blank=True
     )
+    last_login = models.DateTimeField(auto_now=True, blank=True, null=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
