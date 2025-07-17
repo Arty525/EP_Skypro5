@@ -46,6 +46,7 @@ class FullUserSerializer(serializers.ModelSerializer):
             "avatar",
             "payment_history",
             "last_login",
+            "is_active",
         ]
 
 

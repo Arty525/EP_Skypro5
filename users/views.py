@@ -21,6 +21,12 @@ class UserListAPIView(generics.ListAPIView):
     serializer_class = PrivateUserSerializer
     permission_classes = [IsAuthenticated]
 
+    def get_serializer_class(self):
+        if self.request.user.is_superuser:
+            return FullUserSerializer
+        else:
+            return PrivateUserSerializer
+
 
 class UserRetrieveAPIView(generics.RetrieveAPIView):
     queryset = User.objects.all()

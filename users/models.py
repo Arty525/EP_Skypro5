@@ -50,6 +50,7 @@ class User(AbstractUser):
         upload_to="avatars/", verbose_name="Аватар", null=True, blank=True
     )
     last_login = models.DateTimeField(auto_now=True, blank=True, null=True)
+    is_active = models.BooleanField(default=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
