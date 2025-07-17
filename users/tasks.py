@@ -21,11 +21,6 @@ tasks_logger.setLevel(logging.INFO)
 
 @shared_task
 def check_last_login():
-    print('AAAAAAAAAAAAAAAAA')
-    users = User.objects.all()
-    for user in users:
-        user.is_active = False
-        if (timezone.now() - user.last_login) > timedelta(month=1):
-            user.is_active = False
-            tasks_logger.info(f'User {user} blogcked by time')
-        user.save()
+    User.objects.all().update(is_active=False)
+    #User.objects.filter(last_login__lt=(timezone.now() - timedelta(months=1)), is_active=True).update(is_active=False)
+    return 'Пользователи заблокированы'
