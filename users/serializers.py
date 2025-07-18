@@ -1,12 +1,6 @@
-from datetime import timezone
-
 from rest_framework import serializers
-
 from materials.services import session_checkout
 from .models import User, Payments
-
-
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 
 class UserSerializer(serializers.ModelSerializer):

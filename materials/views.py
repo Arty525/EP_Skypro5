@@ -21,10 +21,16 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 
 views_logger = logging.getLogger(__name__)
 console_handler = logging.StreamHandler()
-console_formatter = logging.Formatter("[%(asctime)s] %(levelname)s - %(name)s - %(message)s - %(pathname)s:%(lineno)d")
+console_formatter = logging.Formatter(
+    "[%(asctime)s] %(levelname)s - %(name)s - %(message)s - %(pathname)s:%(lineno)d"
+)
 console_handler.setFormatter(console_formatter)
-file_handler = logging.FileHandler(os.path.join(ROOT_DIR,"logs", "materials","views.log"), "w")
-file_formatter = logging.Formatter("[%(asctime)s] %(levelname)s - %(name)s - %(message)s - %(pathname)s:%(lineno)d")
+file_handler = logging.FileHandler(
+    os.path.join(ROOT_DIR, "logs", "materials", "views.log"), "w"
+)
+file_formatter = logging.Formatter(
+    "[%(asctime)s] %(levelname)s - %(name)s - %(message)s - %(pathname)s:%(lineno)d"
+)
 file_handler.setFormatter(file_formatter)
 views_logger.addHandler(file_handler)
 views_logger.setLevel(logging.DEBUG)
@@ -37,16 +43,18 @@ class CourseViewSet(viewsets.ModelViewSet):
     pagination_class = CustomPagination
 
     def update(self, request, *args, **kwargs):
-        views_logger.info(('CourseViewSet.update started'))
+        views_logger.info(("CourseViewSet.update started"))
         instance = self.get_object()
         serializer = self.get_serializer(instance, data=request.data, partial=True)
         if serializer.is_valid():
-            if timedelta(hours=4) >= datetime.now(timezone.utc) - instance.last_updated:
-                send_course_update_mail.delay(instance.pk,)
+            four_hours_delta = datetime.now(timezone.utc) - instance.last_updated
+            if timedelta(hours=4) <= four_hours_delta:
+                send_course_update_mail.delay(
+                    instance.pk,
+                )
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -97,9 +105,12 @@ class LessonCreateAPIView(generics.CreateAPIView):
     def perform_create(self, serializer):
         if serializer.is_valid():
             serializer.save(owner=self.request.user)
-            course = Course.objects.get(pk=self.request.data['course'])
-            course.last_updated = datetime.now(timezone.utc)
-            if timedelta(hours=4) >= datetime.now(timezone.utc) - course.last_updated:
+            course = Course.objects.get(pk=self.request.data["course"])
+            four_hours_delta = datetime.now(timezone.utc) - course.last_updated
+            if timedelta(hours=4) <= four_hours_delta:
+                send_course_update_mail.delay(
+                    course.pk,
+                )
                 course.last_updated = datetime.now(timezone.utc)
             course.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
@@ -122,11 +133,14 @@ class LessonUpdateAPIView(generics.UpdateAPIView):
         serializer = self.get_serializer(instance, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
-            course = Course.objects.get(pk=serializer.data['course'])
-            if timedelta(hours=4) <= datetime.now(timezone.utc) - course.last_updated:
+            course = Course.objects.get(pk=serializer.data["course"])
+            four_hours_delta = datetime.now(timezone.utc) - course.last_updated
+            if timedelta(hours=4) <= four_hours_delta:
                 course.last_updated = datetime.now(timezone.utc)
             course.save()
-            views_logger.info(f'Урок {serializer.data['title']} обновлен. Курс {course} обновлен.')
+            views_logger.info(
+                f"Урок {serializer.data['title']} обновлен. Курс {course} обновлен."
+            )
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

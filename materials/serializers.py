@@ -14,7 +14,7 @@ class CourseSerializer(serializers.ModelSerializer):
             subs = Subscriptions.objects.filter(course=instance)
             if subs is not None:
                 for sub in subs:
-                    if sub.user == self.context['request'].user:
+                    if sub.user == self.context["request"].user:
                         return True
                 return False
         except ObjectDoesNotExist:
