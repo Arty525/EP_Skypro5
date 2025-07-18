@@ -7,6 +7,7 @@ from .views import (
     LessonRetrieveAPIView,
     LessonDestroyAPIView,
     CourseSubscribeAPIView,
+    PaymentCreateAPIView,
 )
 
 from rest_framework.routers import DefaultRouter
@@ -31,5 +32,10 @@ urlpatterns = [
         "courses/<int:pk>/subscribe/",
         CourseSubscribeAPIView.as_view(),
         name="course_subscribe",
+    ),
+    path(
+        "courses/<int:pk>/payment/",
+        PaymentCreateAPIView.as_view(),
+        name="payment_create",
     ),
 ] + router.urls

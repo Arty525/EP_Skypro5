@@ -1,4 +1,3 @@
-from click import group
 from django.contrib.auth.models import Group
 from django.urls import reverse
 from rest_framework import status
@@ -7,9 +6,6 @@ from rest_framework.test import APITestCase, APIClient
 
 from materials.models import Lesson, Course, Subscriptions
 from users.models import User
-
-
-# Create your tests here.
 
 
 class LessonsAPIViewTestCase(APITestCase):
@@ -22,7 +18,8 @@ class LessonsAPIViewTestCase(APITestCase):
             email="test2@testmail.ru", password="testpass123"
         )
         self.moder = User.objects.create_user(
-            email="moder@testmail.ru", password="testpass123",
+            email="moder@testmail.ru",
+            password="testpass123",
         )
         self.moder.groups.add(Group.objects.get(name="moderator"))
         Course.objects.create(
@@ -79,7 +76,6 @@ class LessonsAPIViewTestCase(APITestCase):
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
-
     def test_delete_lesson_by_moder(self):
         lesson = Lesson.objects.create(
             title="Test lesson2",
@@ -120,7 +116,7 @@ class LessonsAPIViewTestCase(APITestCase):
         self.assertEqual(response.data["title"], "Test lesson create")
         self.assertEqual(Lesson.objects.all().count(), 2)
 
-        #Проверка поля video_url
+        # Проверка поля video_url
         data = {
             "title": "Test lesson create",
             "description": "Test desc",
@@ -156,7 +152,7 @@ class LessonsAPIViewTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_lesson_partial_update(self):
-        #Проверка для юзера
+        # Проверка для юзера
         url = reverse("materials:lesson_update", kwargs={"pk": self.lesson.pk})
         data = {"title": "Partial updated lesson"}
         self.client.force_authenticate(user=self.user)
@@ -164,7 +160,7 @@ class LessonsAPIViewTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["title"], "Partial updated lesson")
 
-        #Проверка для модератора
+        # Проверка для модератора
         self.client.force_authenticate(user=self.moder)
         response = self.client.patch(url, data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
