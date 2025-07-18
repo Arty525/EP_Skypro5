@@ -1,5 +1,4 @@
 from rest_framework import serializers
-
 from materials.services import session_checkout
 from .models import User, Payments
 
@@ -40,6 +39,8 @@ class FullUserSerializer(serializers.ModelSerializer):
             "phone_number",
             "avatar",
             "payment_history",
+            "last_login",
+            "is_active",
         ]
 
 

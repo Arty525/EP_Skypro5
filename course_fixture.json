@@ -5,7 +5,8 @@
     "fields": {
       "title": "Основы Python",
       "preview": "previews/courses/python.jpg",
-      "description": "Изучение базовых концепций языка Python"
+      "description": "Изучение базовых концепций языка Python",
+      "last_updated": "2025-03-15T09:30:45Z"
     }
   },
   {
@@ -14,7 +15,8 @@
     "fields": {
       "title": "Веб-разработка на Django",
       "preview": "previews/courses/django.jpg",
-      "description": "Полный курс по созданию веб-приложений на Django"
+      "description": "Полный курс по созданию веб-приложений на Django",
+      "last_updated": "2025-07-22T14:15:22Z"
     }
   },
   {
@@ -23,7 +25,8 @@
     "fields": {
       "title": "JavaScript для начинающих",
       "preview": "previews/courses/js.jpg",
-      "description": "Основы программирования на JavaScript"
+      "description": "Основы программирования на JavaScript",
+      "last_updated": "2025-01-10T11:05:33Z"
     }
   },
   {
@@ -32,7 +35,8 @@
     "fields": {
       "title": "React с нуля",
       "preview": "previews/courses/react.jpg",
-      "description": "Современная фронтенд-разработка на React"
+      "description": "Современная фронтенд-разработка на React",
+      "last_updated": "2025-05-18T16:45:12Z"
     }
   },
   {
@@ -41,7 +45,8 @@
     "fields": {
       "title": "Базы данных SQL",
       "preview": "previews/courses/sql.jpg",
-      "description": "Проектирование и работа с реляционными БД"
+      "description": "Проектирование и работа с реляционными БД",
+      "last_updated": "2025-09-30T10:20:05Z"
     }
   },
   {
@@ -50,7 +55,8 @@
     "fields": {
       "title": "Алгоритмы и структуры данных",
       "preview": "previews/courses/algorithms.jpg",
-      "description": "Фундаментальные алгоритмы для разработчиков"
+      "description": "Фундаментальные алгоритмы для разработчиков",
+      "last_updated": "2025-02-28T13:10:47Z"
     }
   },
   {
@@ -59,7 +65,8 @@
     "fields": {
       "title": "Мобильная разработка на Flutter",
       "preview": "previews/courses/flutter.jpg",
-      "description": "Создание кроссплатформенных мобильных приложений"
+      "description": "Создание кроссплатформенных мобильных приложений",
+      "last_updated": "2025-06-14T08:55:30Z"
     }
   },
   {
@@ -68,7 +75,8 @@
     "fields": {
       "title": "Машинное обучение",
       "preview": "previews/courses/ml.jpg",
-      "description": "Введение в искусственный интеллект и ML"
+      "description": "Введение в искусственный интеллект и ML",
+      "last_updated": "2025-11-05T15:25:18Z"
     }
   },
   {
@@ -77,7 +85,8 @@
     "fields": {
       "title": "DevOps практики",
       "preview": "previews/courses/devops.jpg",
-      "description": "CI/CD, Docker, Kubernetes и другие инструменты"
+      "description": "CI/CD, Docker, Kubernetes и другие инструменты",
+      "last_updated": "2025-04-20T12:40:55Z"
     }
   },
   {
@@ -86,7 +95,8 @@
     "fields": {
       "title": "Тестирование ПО",
       "preview": "previews/courses/qa.jpg",
-      "description": "Ручное и автоматизированное тестирование"
+      "description": "Ручное и автоматизированное тестирование",
+      "last_updated": "2025-08-12T09:15:42Z"
     }
   },
   {
@@ -95,7 +105,8 @@
     "fields": {
       "title": "Компьютерные сети",
       "preview": "previews/courses/networks.jpg",
-      "description": "Принципы работы сетевых технологий"
+      "description": "Принципы работы сетевых технологий",
+      "last_updated": "2025-12-24T17:30:25Z"
     }
   },
   {
@@ -104,7 +115,8 @@
     "fields": {
       "title": "Кибербезопасность",
       "preview": "previews/courses/security.jpg",
-      "description": "Основы защиты информации и систем"
+      "description": "Основы защиты информации и систем",
+      "last_updated": "2025-03-08T14:50:10Z"
     }
   },
   {
@@ -113,7 +125,8 @@
     "fields": {
       "title": "UX/UI дизайн",
       "preview": "previews/courses/design.jpg",
-      "description": "Создание пользовательских интерфейсов"
+      "description": "Создание пользовательских интерфейсов",
+      "last_updated": "2025-10-17T11:35:50Z"
     }
   },
   {
@@ -122,7 +135,8 @@
     "fields": {
       "title": "Блокчейн технологии",
       "preview": "previews/courses/blockchain.jpg",
-      "description": "Основы криптовалют и смарт-контрактов"
+      "description": "Основы криптовалют и смарт-контрактов",
+      "last_updated": "2025-07-03T16:20:15Z"
     }
   },
   {
@@ -131,7 +145,8 @@
     "fields": {
       "title": "Управление IT-проектами",
       "preview": "previews/courses/project_management.jpg",
-      "description": "Agile, Scrum и другие методологии"
+      "description": "Agile, Scrum и другие методологии",
+      "last_updated": "2025-09-09T10:10:10Z"
     }
   }
 ]

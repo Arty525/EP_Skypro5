@@ -12,6 +12,7 @@ class Course(models.Model):
     )
     description = models.TextField(verbose_name="Описание")
     owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    last_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
@@ -31,6 +32,7 @@ class Lesson(models.Model):
     video_url = models.URLField(verbose_name="Ссылка на видео")
     course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name="Курс")
     owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    last_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
